@@ -1,6 +1,5 @@
 from chip import FabricAdmin
 from chip import ChipStack
-from chip import ChipCommissionableNodeCtrl
 
 # Initial setup
 def setup_device_controller():
@@ -9,7 +8,6 @@ def setup_device_controller():
     chipStack = ChipStack.ChipStack(persistentStoragePath='/tmp/chip-device-ctrl-storage.json', installDefaultLogHandler=False, bluetoothAdapter=None)
     fabricAdmin = FabricAdmin.FabricAdmin()
     devCtrl = fabricAdmin.NewController(nodeId=controllerNodeId, useTestCommissioner=True)
-    commissionableNodeCtrl = ChipCommissionableNodeCtrl.ChipCommissionableNodeController(chipStack)
 
     return devCtrl
 
