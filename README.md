@@ -1,0 +1,1 @@
+You must run main.py with the root dir of this repository as the current working directory. This is required so that the credentails folder can be located otherwise commissioning fails with an attestation error.
