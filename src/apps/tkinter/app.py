@@ -5,25 +5,23 @@ from tkinter import ttk
 
 def main():
     root = tk.Tk()
-    root.title('Demo')
+    root.title('Matter example')
 
     frame = ttk.Frame(root)
     frame.grid()
 
-    options = {}
 
-    name = tk.StringVar()
-    name_entry = ttk.Entry(frame, textvariable=name)
-    name_entry.grid(column=0, row=0, sticky='W', **options)
+    commission_button = ttk.Button(frame, text='Commission')
+    toggle_button = ttk.Button(frame, text='Toggle')
+    read_button = ttk.Button(frame, text='Read')
 
-    button1 = ttk.Button(frame, text='Hello')
-    button2 = ttk.Button(frame, text='World')
-
-    button1.grid(column=1, row=0, sticky='W', **options)
-    button2.grid(column=2, row=0, sticky='W', **options)
+    commission_button.grid(column=0, row=0, sticky='nsew')
+    toggle_button.grid(column=1, row=0, sticky='nsew')
+    read_button.grid(column=2, row=0, sticky='nsew')
 
     text = tk.Text(frame, wrap=tk.WORD)
-    text.grid(column=0, row=1, columnspan=3, **options)
+    text.grid(column=0, row=2, columnspan=3, sticky='nsew')
+
 
     root.eval('tk::PlaceWindow . center')
     root.mainloop()
