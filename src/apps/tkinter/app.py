@@ -28,9 +28,11 @@ class App(tk.Tk):
         connect_window = ConnectWindow(self)
         connect_window.grab_set()
 
-    def connect_controller(self, connection_window, device_ip, device_pin_code, device_node_id):
+    def connect_controller(self, connection_window, device_ip, device_pin_code, device_node_id, commission):
         self.controller = Controller(1, device_ip, device_pin_code, device_node_id)
-        self.controller.commission_device()
+
+        if commission:
+            self.controller.commission_device()
 
         self.load_ui()
 
@@ -87,8 +89,11 @@ class ConnectWindow(tk.Toplevel):
         node_id_entry.grid(column=1, row=2, sticky='nsew')
         device_node_id.set(1234)
 
-        connect_button = ttk.Button(frame, text='Connect', command=lambda: parent.connect_controller(self, device_ip.get(), device_pin_code.get(), device_node_id.get()))
+        connect_button = ttk.Button(frame, text='Connect', command=lambda: parent.connect_controller(self, device_ip.get(), device_pin_code.get(), device_node_id.get(), False))
         connect_button.grid(column=0, row=3)
+        
+        commission_button = ttk.Button(frame, text='Commission', command=lambda: parent.connect_controller(self, device_ip.get(), device_pin_code.get(), device_node_id.get(), True))
+        commission_button.grid(column=1, row=3)
 
 
 if __name__ == "__main__":
