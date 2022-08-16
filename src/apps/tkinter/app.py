@@ -69,7 +69,7 @@ class ConnectWindow(tk.Toplevel):
 
         ip_entry = ttk.Entry(frame, textvariable=device_ip)
         ip_entry.grid(column=1, row=0, sticky='nsew')
-        device_ip.set("2a00:23a8:89b:da01:5bac:df45:7887:b359")
+        device_ip.set("")
 
         device_pin_code = tk.IntVar()
 
