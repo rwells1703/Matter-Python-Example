@@ -5,7 +5,7 @@ def main():
     controller = False
 
     while True:
-        choice = input(">")
+        choice = input("> ")
         args = choice.split(" ")
 
         validCommand = False
