@@ -16,6 +16,7 @@ def main():
             else:
                 controller = Controller(1, args[1], int(args[2]), int(args[3]))
             validCommand = True
+
         elif args[0] == "help":
             print("List of available commands:")
             print("- connect <ip address> <setup pin code> <node id> - initialise the controller to these device values")
@@ -29,27 +30,34 @@ def main():
             print("- scan - start a scan for new devices to connect to")
             print("- discovered - print discovered devices by a scan")
             validCommand = True
+
         elif args[0] == "exit" or args[0] == "quit" or args[0] == "q":
             if controller:
                 controller.shutdown()
             exit()
+
         elif controller:
             if args[0] == "commission":
                 controller.commission_device()
                 validCommand = True
+
             elif args[0] == "toggle":
                 print(controller.toggle_light())
                 validCommand = True
+
             elif args[0] == "read":
                 print(controller.read_light())
                 validCommand = True
+
             elif args[0] == "address":
                 print(controller.devCtrl.GetAddressAndPort(1234))
                 validCommand = True
+
             elif args[0] == "scan":
                 print("Scanning devices in background...")
                 controller.scan()
                 validCommand = True
+                
             elif args[0] == "discovered":
                 controller.print_discovered()
                 validCommand = True
