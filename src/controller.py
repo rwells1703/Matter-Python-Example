@@ -44,6 +44,14 @@ class Controller:
         result = self.devCtrl.ZCLReadAttribute(cluster, attribute, self.device_node_id, endpoint, group_id)
         return result
 
+    # Scan for commissionable devices
+    def scan(self):
+        self.devCtrl.DiscoverAllCommissioning()
+
+    # Print info about discovered commissionable devices to the console
+    def print_discovered(self):
+        self.devCtrl.PrintDiscoveredDevices()
+    
     # Shutdown device controller
     def shutdown(self):
         self.devCtrl.Shutdown()

@@ -15,6 +15,10 @@ def main():
             print(controller.read_light())
         elif choice == "address":
             print(controller.devCtrl.GetAddressAndPort(1234))
+        elif choice == "scan":
+            controller.scan()
+        elif choice == "discovered":
+            controller.print_discovered()
         elif choice == "exit" or choice == "quit" or choice == "q":
             controller.shutdown()
             exit()
