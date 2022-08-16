@@ -16,6 +16,19 @@ def main():
             else:
                 controller = Controller(1, args[1], int(args[2]), int(args[3]))
             validCommand = True
+        elif args[0] == "help":
+            print("List of available commands:")
+            print("- connect <ip address> <setup pin code> <node id> - initialise the controller to these device values")
+            print("- help - display this menu")
+            print("- exit, quit, q - close the cli")
+            print("\nCommands requiring you to connect first:")
+            print("- commission - commission the light device with the values given by the 'connect' command")
+            print("- toggle - toggle the on/off value of the light")
+            print("- read - read the on/off value of the light")
+            print("- address - print the address and port of the currently connected device")
+            print("- scan - start a scan for new devices to connect to")
+            print("- discovered - print discovered devices by a scan")
+            validCommand = True
         elif args[0] == "exit" or args[0] == "quit" or args[0] == "q":
             if controller:
                 controller.shutdown()
