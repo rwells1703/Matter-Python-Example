@@ -18,8 +18,9 @@ class App(tk.Tk):
         self.read_button = ttk.Button(self.frame, text='Read')
         self.read_button.grid(column=1, row=0, sticky='nsew')
 
-        self.text = tk.Text(self.frame, wrap=tk.WORD)
-        self.text.grid(column=0, row=2, columnspan=2, sticky='nsew')
+        self.onoff_val = tk.IntVar()
+        self.onoff_label = tk.Label(self.frame, textvariable=self.onoff_val)
+        self.onoff_label.grid(column=0, row=1, columnspan=2, sticky='nsew')
         
         self.open_connect_window()
 
@@ -31,10 +32,23 @@ class App(tk.Tk):
         self.controller = Controller(1, device_ip, device_pin_code, device_node_id)
         self.controller.commission_device()
 
-        self.toggle_button.configure(command=self.controller.toggle_light)
-        self.read_button.configure(command=self.controller.read_light)
+        self.load_ui()
 
         connection_window.destroy()
+
+    def load_ui(self):
+        self.toggle_button.configure(command=self.toggle_light)
+        self.read_button.configure(command=self.read_light)
+
+        self.read_light()
+
+    def toggle_light(self):
+        self.controller.toggle_light()
+        self.read_light()
+
+    def read_light(self):
+        onoff_result = self.controller.read_light()
+        self.onoff_val.set("On" if onoff_result.value else "Off")
 
 class ConnectWindow(tk.Toplevel):
     def __init__(self, parent):
